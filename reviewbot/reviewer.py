@@ -19,7 +19,7 @@ from reviewbot.models import FileHunk, FileReview, Finding, Severity
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 # Sent as OpenRouter attribution headers (optional but good citizenship).
-APP_URL = "https://github.com/hamza-elsousi/reviewbot"
+APP_URL = "https://github.com/HamzaElSousi/reviewbot"
 APP_TITLE = "ReviewBot"
 
 MAX_FINDINGS_PER_FILE = 10

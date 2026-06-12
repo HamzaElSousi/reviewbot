@@ -97,7 +97,7 @@ The part that makes inline comments work: the diff parser annotates every added/
 ## Run locally
 
 ```bash
-pip install git+https://github.com/hamza-elsousi/reviewbot.git
+pip install git+https://github.com/HamzaElSousi/reviewbot.git
 
 export OPENROUTER_API_KEY=sk-or-v1-...
 export GITHUB_TOKEN=ghp_...          # needs pull-requests: write
@@ -118,7 +118,7 @@ Exit codes: `0` clean / non-blocking, `1` blocking findings (fails CI), `2` usag
 ## Development
 
 ```bash
-git clone https://github.com/hamza-elsousi/reviewbot.git && cd reviewbot
+git clone https://github.com/HamzaElSousi/reviewbot.git && cd reviewbot
 python3.11 -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
 pytest tests/ -v        # everything mocked — no API keys needed

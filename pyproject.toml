@@ -36,8 +36,8 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/HamzaSousi/reviewbot"
-Issues = "https://github.com/HamzaSousi/reviewbot/issues"
+Homepage = "https://github.com/HamzaElSousi/reviewbot"
+Issues = "https://github.com/HamzaElSousi/reviewbot/issues"
 
 [project.scripts]
 reviewbot = "reviewbot.cli:app"

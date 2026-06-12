@@ -98,4 +98,7 @@ def _parse_single_file_patch(path: str, patch: str):
         raise DiffParseError(f"Could not parse diff for {path}: {exc}") from exc
     if not patch_set:
         raise DiffParseError(f"Diff for {path} contained no files")
-    return patch_set[0]
+    patched_file = patch_set[0]
+    if len(patched_file) == 0:
+        raise DiffParseError(f"Diff for {path} contained no hunks")
+    return patched_file

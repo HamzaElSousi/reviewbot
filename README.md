@@ -39,15 +39,49 @@ Files reviewed: 4 | Findings: 6 (2 🔴 bugs · 3 🟡 warnings · 1 🔵 sugges
 ...
 ```
 
-## Install (2 steps, ~5 minutes)
+## Install on any repo (2 steps, ~5 minutes)
 
-**1.** Copy [`examples/workflows/reviewbot.yml`](examples/workflows/reviewbot.yml) into your repo as `.github/workflows/reviewbot.yml`
+> **Bring your own API key.** ReviewBot does **not** ship with a key and never calls anyone else's. Each repo that installs ReviewBot adds its **own** `OPENROUTER_API_KEY` secret, which stays encrypted in that repo. You are billed nothing on the free model.
 
-**2.** Add one secret: go to your repo → Settings → Secrets and variables → Actions → New repository secret:
-- Name: `OPENROUTER_API_KEY`
-- Value: a free key from [openrouter.ai/keys](https://openrouter.ai/keys)
+**Step 1 — add the workflow file.**
+Create `.github/workflows/reviewbot.yml` in your repo with this content (also in [`examples/workflows/reviewbot.yml`](examples/workflows/reviewbot.yml)):
 
-That's it. `GITHUB_TOKEN` is injected automatically by Actions. The next PR gets reviewed.
+```yaml
+name: ReviewBot
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install git+https://github.com/HamzaElSousi/reviewbot.git
+      - run: reviewbot review
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+```
+
+**Step 2 — add your OpenRouter key as a secret.**
+1. Get a free key at **[openrouter.ai/keys](https://openrouter.ai/keys)** (the default Gemma model costs $0).
+2. In your repo: **Settings → Secrets and variables → Actions → New repository secret**
+3. Name: `OPENROUTER_API_KEY` · Value: your key · **Add secret**
+
+That's it. `GITHUB_TOKEN` is injected automatically by Actions — `OPENROUTER_API_KEY` is the only secret you add. Open a pull request and ReviewBot reviews it within a minute.
+
+**Optional — add a config file.** Drop a [`reviewbot.yml`](#configuration-optional) at your repo root to change the model, categories, ignore globs, or what blocks a merge. Without it, ReviewBot uses sensible defaults.
+
+### Whose API key gets used?
+
+Repository secrets are **scoped to a single repository**. The `OPENROUTER_API_KEY` you add to *your* repo is used only by ReviewBot runs in *your* repo — no one else can read or use it. Conversely, installing ReviewBot never makes you use the maintainer's key. And GitHub deliberately **does not expose secrets to workflows triggered by pull requests from forks**, so a random contributor opening a fork PR cannot consume your key either.
 
 ## Configuration (optional)
 

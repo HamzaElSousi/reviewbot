@@ -1,6 +1,6 @@
 # reviewbot.yml — place at your repo root (optional; these are the defaults)
 
-model: qwen/qwen3-coder:free    # any OpenRouter model id
+model: google/gemma-4-31b-it:free    # any OpenRouter model id
 
 review:
   categories:

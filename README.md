@@ -1,5 +1,9 @@
 # 🤖 ReviewBot
 
+[![Tests](https://github.com/HamzaElSousi/reviewbot/actions/workflows/tests.yml/badge.svg)](https://github.com/HamzaElSousi/reviewbot/actions/workflows/tests.yml)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 **Automated PR code review via GitHub Actions — free LLM, inline comments, zero setup beyond one secret.**
 
 ReviewBot runs on every pull request, sends each changed file's diff to an LLM (default: `google/gemma-4-31b-it:free` via [OpenRouter](https://openrouter.ai) — completely free), and posts findings as **inline review comments at exact line numbers**, plus a summary. Bugs and security issues trigger `REQUEST_CHANGES` and fail CI.
@@ -9,6 +13,10 @@ ReviewBot runs on every pull request, sends each changed file's diff to an LLM (
 | GitHub Copilot PR Review | $19 | No | No |
 | CodeRabbit Pro | $15 | No | Limited |
 | **ReviewBot** | **$0** | **Yes** | **Full (free LLM)** |
+
+## See it in action
+
+ReviewBot reviewing a real PR on this repo — [**PR #1**](https://github.com/HamzaElSousi/reviewbot/pull/1) — where it caught a SQL injection and a NoneType dereference as inline comments at the exact lines, flagged two bare-except blocks, and set the review to `CHANGES_REQUESTED`.
 
 ## What it looks like
 

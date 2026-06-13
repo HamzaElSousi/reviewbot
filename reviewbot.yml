@@ -1,5 +1,5 @@
 # ReviewBot's own review config (dogfooding).
-model: qwen/qwen3-coder:free
+model: google/gemma-4-31b-it:free
 
 review:
   categories:

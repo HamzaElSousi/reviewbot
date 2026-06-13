@@ -2,7 +2,7 @@
 
 **Automated PR code review via GitHub Actions — free LLM, inline comments, zero setup beyond one secret.**
 
-ReviewBot runs on every pull request, sends each changed file's diff to an LLM (default: `google/gemma-3-27b-it:free` via [OpenRouter](https://openrouter.ai) — completely free), and posts findings as **inline review comments at exact line numbers**, plus a summary. Bugs and security issues trigger `REQUEST_CHANGES` and fail CI.
+ReviewBot runs on every pull request, sends each changed file's diff to an LLM (default: `qwen/qwen3-coder:free` via [OpenRouter](https://openrouter.ai) — completely free), and posts findings as **inline review comments at exact line numbers**, plus a summary. Bugs and security issues trigger `REQUEST_CHANGES` and fail CI.
 
 | Tool | Cost/seat/month | Self-hostable | Free tier |
 |---|---|---|---|
@@ -46,7 +46,7 @@ That's it. `GITHUB_TOKEN` is injected automatically by Actions. The next PR gets
 Drop a `reviewbot.yml` at your repo root — every key is optional, these are the defaults:
 
 ```yaml
-model: google/gemma-3-27b-it:free    # any OpenRouter model id
+model: qwen/qwen3-coder:free    # any OpenRouter model id
 
 review:
   categories:

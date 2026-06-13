@@ -14,7 +14,7 @@ Every engineering team needs code review. ReviewBot is the kind of project that 
 - Structured LLM output — prompting reliably for JSON, handling malformed responses, retrying
 
 **Why it stands out on a resume:**
-Tools like CodeRabbit and GitHub Copilot PR Review cost $10–$20/seat/month. You've built the open-source equivalent. That's the story. The fact that it uses a free model (Gemma via OpenRouter) makes the cost argument even sharper.
+Tools like CodeRabbit and GitHub Copilot PR Review cost $10–$20/seat/month. You've built the open-source equivalent. That's the story. The fact that it uses a free model (Qwen3-Coder via OpenRouter) makes the cost argument even sharper.
 
 **Standalone value:**
 Two steps to add ReviewBot to any GitHub repo:
@@ -66,7 +66,7 @@ Files reviewed: 4 | Findings: 6 (2 🔴 bugs · 3 🟡 warnings · 1 🔵 sugges
 ### 🔵 Suggestions
 - static/admin.js:134 — deleteDoc and deleteChunk share 80% logic
 
-Powered by ReviewBot · google/gemma-3-27b-it:free
+Powered by ReviewBot · qwen/qwen3-coder:free
 ```
 
 ---
@@ -86,7 +86,7 @@ flowchart TD
     F --> G{For each file\nnot in ignore list}
 
     G --> H[LLMReviewer\nbuild prompt with diff hunk]
-    H --> I[OpenRouter API\ngemma-3-27b-it:free]
+    H --> I[OpenRouter API\nqwen3-coder:free]
     I --> J{JSON response\nvalid?}
     J -->|yes| K[Parse findings\nFinding objects with line numbers]
     J -->|no, retry ≤2| I
@@ -160,7 +160,7 @@ flowchart LR
 
 ```yaml
 # reviewbot.yml  — place at repo root
-model: google/gemma-3-27b-it:free    # any OpenRouter model
+model: qwen/qwen3-coder:free    # any OpenRouter model
 
 review:
   categories:

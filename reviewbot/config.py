@@ -12,7 +12,7 @@ from pathlib import Path
 import yaml
 from pydantic import BaseModel, Field, ValidationError
 
-DEFAULT_MODEL = "google/gemma-3-27b-it:free"
+DEFAULT_MODEL = "qwen/qwen3-coder:free"
 DEFAULT_CONFIG_FILENAME = "reviewbot.yml"
 
 
